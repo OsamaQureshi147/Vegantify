@@ -3,15 +3,70 @@ import { ToastAndroid, View, TextInput, Button,Image, ImageBackground,Text, Touc
 import styles from '../styles';
 
 
+var coche="";
+
 const LoginScreen = ({navigation}) => {
 
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
     
+ //    ----------------------------------------------   //
+
     const signIn = () => {
+   
+        var uname = email;
+        var code = password;
 
 
+        if(uname != "" || code != ""){ 
+            fetch('https://zallary.com/vegantify/log_in.php', {
+                method: 'POST', 
+                body: JSON.stringify({
+                    email: uname,
+                    password: code
+                })
+            }).then((response) => response.text())
+            .then((text) => { 
+        
+            if(text.includes('Wrong_Credentials'))
+            {
+                if (Platform.OS === 'android') 
+                {
+                
+                ToastAndroid.show(text , ToastAndroid.SHORT); 
+                }
+            else 
+                    {
+                AlertIOS.alert(text);
+                    } 
+            }
+            else
+            {
+                coche = JSON.parse(text); 
+                ToastAndroid.show("login successfull: "+coche['fullname'] , ToastAndroid.SHORT); 
+            } 
+            });
+
+
+
+            }
+            else
+            { 
+            if (Platform.OS === 'android') 
+            {
+                ToastAndroid.show("Email/Password Can't be empty" , ToastAndroid.SHORT); 
+            }
+            else 
+            {
+                AlertIOS.alert("Email/Password Can't be empty");
+            }
+
+            }
     }
+ //    ----------------------------------------------   //
+
+
+
 
     return(
         <ImageBackground
