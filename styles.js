@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 
 const styles = StyleSheet.create({
     main:{ 
@@ -9,19 +9,29 @@ const styles = StyleSheet.create({
   
     },
   
-    container:
-    { 
-      flexDirection: 'row', 
-      justifyContent: 'center',
+    container: {
+      flex: 1,
       alignItems: 'center',
-    },
+      justifyContent: 'center',
+      padding: 10,
+  },
+
     inputcontainer:
     { 
-   
+      ...Platform.select({
+        ios: {
+        
+        },
+        android: {
+          
+        },
+      }),
+      width:'80%',
       flexDirection:'column', 
       display: "flex", 
-      width:'80%',
     },
+
+
     Imagecontainer:
     { 
       flex:2,
@@ -40,7 +50,14 @@ const styles = StyleSheet.create({
     },
     input:
     { 
-  
+      ...Platform.select({
+        ios: {
+          padding: 10,
+        },
+        android: {
+          
+        },
+      }),
       color:'white',
       fontSize:15, 
       textAlign:'center',
@@ -56,6 +73,14 @@ const styles = StyleSheet.create({
 
     input2:
     { 
+      ...Platform.select({
+        ios: {
+          padding: 10,
+        },
+        android: {
+          
+        },
+      }),
       color:'white',
       fontSize:15,
       textAlign:'center',
@@ -67,6 +92,7 @@ const styles = StyleSheet.create({
       maxHeight:45,
       borderWidth:0.7 
     },
+    
     text:
     { 
       fontSize:14,
@@ -75,18 +101,24 @@ const styles = StyleSheet.create({
       marginTop:18, 
       color:'white'
     },
-    buttoncontainer:
-    {
-      marginTop:20,
-      width:'50%'
+
+    opacitytext:
+    { 
+      fontSize:15, 
+      color:'white'
     },
-    Button:
+
+    signinButton:
     {
-      padding:20,
-      width: 400,
-      backgroundColor: 'green',
+      backgroundColor: '#3a40e0',
+      width: 200,
+      padding: 10,
+      marginTop: 20,
+      alignItems: 'center',
+      borderRadius: 50,
     },
   
+
     signUpButton: {
       color: "white", 
       textDecorationLine: 'underline',

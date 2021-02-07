@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { ToastAndroid, View, TextInput, Button,Image, ImageBackground,Text, TouchableOpacity, Alert } from 'react-native'
 import styles from '../styles';
+import { RadioButton } from 'react-native-paper';
 
 const SignUp = ({navigation}) => {
     
@@ -11,7 +12,7 @@ const SignUp = ({navigation}) => {
     const[gender, setGender] = useState("");
 
     const register = () => {
-
+      // ToastAndroid.show("Hello",ToastAndroid.SHORT);
     };
     
 
@@ -57,23 +58,29 @@ const SignUp = ({navigation}) => {
                   onChangeText={(text)=> setFullname(text)} 
                   >
                   </TextInput>
-  
-                  <TextInput style={styles.input}
+
+                  <View>
+                  <RadioButton
+                  value="first"
+                  status={ gender === 'first' ? 'checked' : 'unchecked' }
+                  onPress={() => setChecked('first')}
+                  />
+                  </View>
+                  {/* <TextInput style={styles.input}
                   placeholder="Gender"
                   placeholderTextColor="#ededed"
                   value={gender} 
                   onChangeText={(text)=> setGender(text)} 
                   >
-                  </TextInput>
+                  </TextInput> */}
   
               </View>
-  
+              
               <View style={styles.buttoncontainer}>
-                <Button style={styles.Button}
-                onPress={register} 
-                title='Register'></Button> 
+                <TouchableOpacity style={styles.signinButton} onPress= {register}>
+                    <Text style={styles.opacitytext}>Register</Text>
+                </TouchableOpacity>
               </View>
-          
           
           </View>   
         </ImageBackground>

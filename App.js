@@ -8,16 +8,10 @@ import SignUp from './views/SignUp';
 
 const Stack = createStackNavigator();
 
-const globalScreenOptions = {
-  headerStyle: {backgroundColor: "blue"},
-  headerTitleStyle: {color: "white"},
-  headerTintColor: "white",
-}
-
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login' screenOptions= {globalScreenOptions}>
+      <Stack.Navigator initialRouteName='Login' screenOptions={{headerShown: false}}>
         <Stack.Screen name='Login' component={LoginScreen}/>
         <Stack.Screen name='Register' component={SignUp}/>
       </Stack.Navigator>
