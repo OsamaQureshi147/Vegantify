@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { ToastAndroid, View, TextInput, Button,Image, ImageBackground,Text, TouchableOpacity, Alert } from 'react-native'
 import styles from '../styles';
-import { RadioButton } from 'react-native-paper';
+// import { RadioButton } from 'react-native-paper';
 
 const SignUp = ({navigation}) => {
     
@@ -59,13 +59,13 @@ const SignUp = ({navigation}) => {
                   >
                   </TextInput>
 
-                  <View>
+                  {/* <View>
                   <RadioButton
                   value="first"
                   status={ gender === 'first' ? 'checked' : 'unchecked' }
                   onPress={() => setChecked('first')}
                   />
-                  </View>
+                  </View> */}
                   {/* <TextInput style={styles.input}
                   placeholder="Gender"
                   placeholderTextColor="#ededed"
