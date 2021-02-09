@@ -7,6 +7,7 @@ const SignUp = ({navigation}) => {
     
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
+    const[confirm_password, setConfirmPassword] = useState("");
     const[username, setUsername] = useState("");
     const[fullname, setFullname] = useState("");
     const[gender, setGender] = useState("male");
@@ -129,6 +130,16 @@ const SignUp = ({navigation}) => {
                   onChangeText={(text)=> setPassword(text)} 
                   >
                   </TextInput>
+
+                  <TextInput style={styles.input}
+                  placeholder="Confirm password"
+                  placeholderTextColor="#ededed"
+                  secureTextEntry={true}
+                  value={confirm_password} 
+                  onChangeText={(text)=> setConfirmPassword(text)} 
+                  >
+                  </TextInput>
+
   
                   <TextInput style={styles.input}
                   placeholder="Full Name"
