@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { ToastAndroid, View, TextInput, Button,Image, ImageBackground,Text, TouchableOpacity, Alert } from 'react-native'
 import styles from '../styles';
-// import { RadioButton } from 'react-native-paper';
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
 const SignUp = ({navigation}) => {
     
@@ -9,11 +9,90 @@ const SignUp = ({navigation}) => {
     const[password, setPassword] = useState("");
     const[username, setUsername] = useState("");
     const[fullname, setFullname] = useState("");
-    const[gender, setGender] = useState("");
+    const[gender, setGender] = useState("male");
+
+
+    const radioProps = [
+      { label: 'male', value: true },
+      { label: 'female', value: false },
+    ];
+
 
     const register = () => {
-      // ToastAndroid.show("Hello",ToastAndroid.SHORT);
+      var e_mail = email;
+      var code = password;
+      var uname = username;
+      var full_name = fullname; 
+      var sex = gender;
+
+      if(uname != "" || code != "" || username != "" ||  fullname != "")
+      { 
+          fetch('https://zallary.com/vegantify/signup.php', {
+              method: 'POST', 
+              body: JSON.stringify({
+                  email: e_mail,
+                  password: code,
+                  username: uname,
+                  gender: sex,
+                  fullname: full_name
+
+              })
+          }).then((response) => response.text())
+          .then((text) => { 
+      
+          if(text.includes('Register Successfully'))
+          {
+              if (Platform.OS === 'android') 
+                {
+                  //Navigate to next page 
+                  //Registration successfull
+                ToastAndroid.show(text , ToastAndroid.SHORT); 
+                navigation.navigate("Login");
+                
+                }
+              else 
+                  {
+                    Alert.alert(text);
+                    navigation.navigate("Login")
+                  } 
+          }
+              else
+              {
+
+                 if (Platform.OS === 'android') 
+                {
+                ToastAndroid.show(text , ToastAndroid.SHORT); 
+                }
+              else 
+                  {
+                    Alert.alert(text);
+                  } 
+                 
+              } 
+          });
+          }
+          else
+          { 
+          if (Platform.OS === 'android') 
+          {
+              ToastAndroid.show("All fields are required" , ToastAndroid.SHORT); 
+          }
+          else 
+          {
+              Alert.alert("All fields are required");
+          }
+
+          }
     };
+
+    const setGenderRadio = (label) => {
+      if (label){
+        setGender("male");
+      }
+      else {
+        setGender("female");
+      }
+    }
     
 
     return(
@@ -59,20 +138,24 @@ const SignUp = ({navigation}) => {
                   >
                   </TextInput>
 
-                  {/* <View>
-                  <RadioButton
-                  value="first"
-                  status={ gender === 'first' ? 'checked' : 'unchecked' }
-                  onPress={() => setChecked('first')}
-                  />
-                  </View> */}
-                  {/* <TextInput style={styles.input}
-                  placeholder="Gender"
-                  placeholderTextColor="#ededed"
-                  value={gender} 
-                  onChangeText={(text)=> setGender(text)} 
+                  <View
+                  style={styles.radiobutton}
                   >
-                  </TextInput> */}
+                    <Text style={{paddingTop:20, color: 'white', fontSize: 17}}
+                    >Gender: </Text>
+                      <RadioForm 
+                        buttonSize={12}
+                        radioStyle={{paddingTop:25,
+                        marginLeft:20 }}
+                        selectedButtonColor="black"
+                        formHorizontal={true}
+                        labelHorizontal={true}
+                        radio_props={radioProps} 
+                        onPress={(value) => setGenderRadio(value)}
+                        animation={true} 
+                        buttonWrapStyle={{marginLeft: 300}}
+                      />
+                    </View>
   
               </View>
               

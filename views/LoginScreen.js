@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { ToastAndroid, View, TextInput, Button,Image, ImageBackground,Text, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native'
+import { ToastAndroid, View, TextInput, Button,Image, ImageBackground,Text, TouchableOpacity, Alert, KeyboardAvoidingView, Platform } from 'react-native'
 import styles from '../styles';
 
 
@@ -43,7 +43,13 @@ const LoginScreen = ({navigation}) => {
             else
             {
                 coche = JSON.parse(text); 
-                ToastAndroid.show("login successfull: "+coche['fullname'] , ToastAndroid.SHORT); 
+                if (Platform.OS === 'android'){
+                    ToastAndroid.show("login successfull: "+coche['fullname'] , ToastAndroid.SHORT); 
+                }
+                else{
+                    Alert.alert("login successfull: "+coche['fullname']); 
+                }
+                navigation.navigate("dashboard");
             } 
             });
 

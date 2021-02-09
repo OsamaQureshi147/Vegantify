@@ -129,7 +129,17 @@ const styles = StyleSheet.create({
       flex: 1,
       alignSelf: 'stretch',
       width: null,
-    }
+    },
+
+    radiobutton:{
+
+      flexDirection: 'row',
+      marginLeft:15,
+    alignItems: 'center',
+
+  },
+
+
   });
 
   export default styles;
