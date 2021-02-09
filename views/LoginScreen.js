@@ -40,6 +40,7 @@ const LoginScreen = ({navigation}) => {
                 Alert.alert(text);
                     } 
             }
+            
             else
             {
                 coche = JSON.parse(text); 
