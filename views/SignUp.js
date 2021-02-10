@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { ToastAndroid, View, TextInput, Button,Image, ImageBackground,Text, TouchableOpacity, Alert } from 'react-native'
 import styles from '../styles';
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import RadioForm  from 'react-native-simple-radio-button';
 
 const SignUp = ({navigation}) => {
     
@@ -109,7 +109,8 @@ const SignUp = ({navigation}) => {
                   <TextInput style={styles.input} 
                   placeholder="Email"
                   placeholderTextColor="#ededed"
-                  value={email} 
+                  value={email}
+                  autoCapitalize='none'
                   onChangeText={(text)=> setEmail(text)} 
                   >  
                   </TextInput>
@@ -118,6 +119,7 @@ const SignUp = ({navigation}) => {
                   placeholder="Username"
                   placeholderTextColor="#ededed"
                   value={username} 
+                  autoCapitalize='none'
                   onChangeText={(text)=> setUsername(text)} 
                   >
                   </TextInput>
@@ -127,6 +129,7 @@ const SignUp = ({navigation}) => {
                   placeholderTextColor="#ededed"
                   secureTextEntry={true}
                   value={password} 
+                  autoCapitalize='none'
                   onChangeText={(text)=> setPassword(text)} 
                   >
                   </TextInput>
@@ -135,6 +138,7 @@ const SignUp = ({navigation}) => {
                   placeholder="Confirm password"
                   placeholderTextColor="#ededed"
                   secureTextEntry={true}
+                  autoCapitalize='none'
                   value={confirm_password} 
                   onChangeText={(text)=> setConfirmPassword(text)} 
                   >
@@ -143,7 +147,7 @@ const SignUp = ({navigation}) => {
   
                   <TextInput style={styles.input}
                   placeholder="Full Name"
-                  placeholderTextColor="#ededed"
+                  placeholderTextColor="#ededed" 
                   value={fullname} 
                   onChangeText={(text)=> setFullname(text)} 
                   >

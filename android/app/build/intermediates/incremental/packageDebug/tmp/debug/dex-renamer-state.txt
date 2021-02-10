@@ -1,4 +1,4 @@
-#Sun Feb 07 20:47:13 PKT 2021
-base.0=/Users/osamaehsan/Desktop/Vegantify/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+#Wed Feb 10 20:54:33 PKT 2021
+base.0=/Users/danish/Dev/Vegantify/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

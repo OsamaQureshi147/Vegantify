@@ -30,15 +30,11 @@ const styles = StyleSheet.create({
       flexDirection:'column', 
       display: "flex", 
     },
-
-
     Imagecontainer:
     { 
       flex:2,
       justifyContent:'flex-end',
       alignItems:'center',
-    
-  
     },
     textcontainer:
     {
@@ -69,8 +65,6 @@ const styles = StyleSheet.create({
       maxHeight:45,
       marginBottom: 15,
     },
-
-
     input2:
     { 
       ...Platform.select({
@@ -92,7 +86,6 @@ const styles = StyleSheet.create({
       maxHeight:45,
       borderWidth:0.7 
     },
-    
     text:
     { 
       fontSize:14,
@@ -101,13 +94,11 @@ const styles = StyleSheet.create({
       marginTop:18, 
       color:'white'
     },
-
     opacitytext:
     { 
       fontSize:15, 
       color:'white'
     },
-
     signinButton:
     {
       backgroundColor: '#3a40e0',
@@ -116,21 +107,13 @@ const styles = StyleSheet.create({
       marginTop: 20,
       alignItems: 'center',
       borderRadius: 50,
-    },
-  
-
-    signUpButton: {
-      color: "white", 
-      textDecorationLine: 'underline',
-      fontStyle: 'italic',
-    },
-  
-    backgroundImage: {
+    }, 
+    backgroundImage: 
+    {
       flex: 1,
       alignSelf: 'stretch',
       width: null,
-    },
-
+    }, 
     radiobutton:{
 
       flexDirection: 'row',
@@ -138,6 +121,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
   },
+
 
 
   });

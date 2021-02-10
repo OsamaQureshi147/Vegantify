@@ -1,16 +1,49 @@
 import React, {useState} from 'react'
-import { ToastAndroid, View, TextInput, Button,Image, ImageBackground,Text, TouchableOpacity, Alert, KeyboardAvoidingView, Platform } from 'react-native'
-import styles from '../styles';
+import { View, TextInput, Button,Image, ImageBackground,Text, TouchableOpacity, Alert, KeyboardAvoidingView, Platform } from 'react-native'
+import styles from '../styles';  
+import Toast from 'react-native-simple-toast';
+import AsyncStorage from '@react-native-async-storage/async-storage';  
 
 
 var coche="";
-
+const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('sp', value); 
+    } catch (e) {
+      // saving error
+    }
+  }
 const LoginScreen = ({navigation}) => {
 
     const[email, setEmail] = useState("");
-    const[password, setPassword] = useState("");
+    const[password, setPassword] = useState(""); 
     
  //    ----------------------------------------------   //
+
+
+ const readData = async () => {
+    try {
+      var m="";
+      m = await AsyncStorage.getItem('sp');
+      if (m !== null) 
+      {  
+        navigation.navigate("dashboard");
+      }
+      else
+      { 
+      }
+  
+    } catch (e) { 
+       
+    }
+  }
+  readData();
+
+
+
+
+   
+ 
 
     const signIn = () => {
    
@@ -18,7 +51,8 @@ const LoginScreen = ({navigation}) => {
         var code = password;
 
 
-        if(uname != "" || code != ""){ 
+        if(uname != "" || code != "")
+        { 
             fetch('https://zallary.com/vegantify/log_in.php', {
                 method: 'POST', 
                 body: JSON.stringify({
@@ -28,46 +62,22 @@ const LoginScreen = ({navigation}) => {
             }).then((response) => response.text())
             .then((text) => { 
         
-            if(text.includes('Wrong_Credentials'))
-            {
-                if (Platform.OS === 'android') 
-                {
-                
-                ToastAndroid.show(text , ToastAndroid.SHORT); 
-                }
-            else 
+                if(text.includes('Wrong_Credentials'))
                     {
-                Alert.alert(text);
-                    } 
-            }
+                         Toast.show(text, Toast.SHORT);  
+                    }
             
-            else
-            {
-                coche = JSON.parse(text); 
-                if (Platform.OS === 'android'){
-                    ToastAndroid.show("login successfull: "+coche['fullname'] , ToastAndroid.SHORT); 
-                }
-                else{
-                    Alert.alert("login successfull: "+coche['fullname']); 
-                }
-                navigation.navigate("dashboard");
-            } 
-            });
+                else
+                      {  
+                            storeData(text);
+                            navigation.navigate("dashboard");
+                         } 
+                 }); 
 
-
-
-            }
-            else
+        }
+        else
             { 
-            if (Platform.OS === 'android') 
-            {
-                ToastAndroid.show("Email/Password Can't be empty" , ToastAndroid.SHORT); 
-            }
-            else 
-            {
-                Alert.alert("Email/Password Can't be empty");
-            }
-
+                Toast.show("Email/Password Can't be empty" , Toast.SHORT); 
             }
     }
  //    ----------------------------------------------   //
@@ -100,7 +110,8 @@ const LoginScreen = ({navigation}) => {
                     <TextInput style={styles.input} 
                     placeholder="Email" placeholderTextColor="white"
                     autoFocus 
-                    type="email" 
+                    type="email"
+                    autoCapitalize='none'
                     value={email} 
                     onChangeText={(text)=> setEmail(text)} 
                     />  
@@ -109,6 +120,7 @@ const LoginScreen = ({navigation}) => {
                     placeholder="Password" placeholderTextColor="white"
                     secureTextEntry 
                     type="password" 
+                    autoCapitalize='none'
                     value={password} 
                     onChangeText={(text)=>setPassword(text)} 
                     />
