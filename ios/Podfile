@@ -13,6 +13,10 @@ target 'Vegantify' do
     # Pods for testing
   end
 
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
   # Enables Flipper.
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and

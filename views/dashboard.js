@@ -46,7 +46,10 @@ const dashboard = ({navigation}) => {
   
 
           <View style={styles.buttoncontainer}>
-          <TouchableOpacity style={styles.signinButton}  >
+          <TouchableOpacity 
+          style={styles.signinButton}
+          onPress={()=> navigation.navigate("findveg")}
+          >
               <Text style={styles.opacitytext}>Go to Map</Text>
           </TouchableOpacity>
           </View>
