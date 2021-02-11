@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@ant-design/icons": "^4.5.0",
     "@react-native-async-storage/async-storage": "^1.13.4",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/drawer": "^5.12.3",
@@ -18,6 +19,7 @@
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-gesture-handler": "^1.9.0",
+    "react-native-get-location": "^2.0.0",
     "react-native-maps": "0.27.1",
     "react-native-paper": "^4.7.1",
     "react-native-reanimated": "^1.13.2",

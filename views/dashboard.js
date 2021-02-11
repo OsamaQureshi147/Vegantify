@@ -1,7 +1,7 @@
 import React  from 'react' 
 import AsyncStorage from '@react-native-async-storage/async-storage';  
 import {StyleSheet, View,TouchableOpacity,Text} from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, Header } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import findveg from './findveg';
 import settings from './settings';
@@ -15,8 +15,14 @@ clearAll = async () => {
   }
  
 }
- 
 
+
+const logout = () => {
+  return(
+    <View></View>
+    // Handle the logout function here
+  );
+}
 
 
 const dashboard = ({navigation}) => {  
@@ -46,23 +52,26 @@ const dashboard = ({navigation}) => {
 
 
       <NavigationContainer independent= {true}>
-      <Drawer.Navigator 
-        drawerPosition="right" 
-        initialRouteName="Home"
-        drawerContentOptions={{
-          activeTintColor: 'red',
-          itemStyle: { marginVertical: 10 },
-          backgroundColor: "#a4ede5",
-        }}
-          overlayColor="transparent"
-          drawerStyle={{
-            width: '65%',
-            backgroundColor: 'transparent',
-            marginRight: -30,
+        <Drawer.Navigator 
+          drawerPosition="right" 
+          initialRouteName="Home"
+          drawerContentOptions={{
+            activeTintColor: 'red',
+            itemStyle: { marginVertical: 10 },
+            backgroundColor: "#a4ede5",
           }}
-        >
-        <Drawer.Screen name="Map" component={findveg} />
-        <Drawer.Screen name="Settings" component={settings} />
+            overlayColor="transparent"
+            drawerStyle={{
+              width: '65%',
+              backgroundColor: 'transparent',
+              marginRight: -30,
+            }}
+          >
+          
+          <Drawer.Screen name="Home" component={findveg} />
+          <Drawer.Screen name="Settings" component={settings} />
+          
+        <Drawer.Screen name="Logout" component={logout} />
       </Drawer.Navigator>
      </NavigationContainer>
  

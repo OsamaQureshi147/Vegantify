@@ -4,7 +4,7 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 const settings = () => {
     return (
         <SafeAreaView>
-            <Text>This is the setting screen</Text>
+            <Text>setting screen</Text>
         </SafeAreaView>
     )
 }

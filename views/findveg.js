@@ -2,6 +2,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER
 import React from 'react' ;
 import {StyleSheet, View,TouchableOpacity,Text, SafeAreaView} from 'react-native';
 
+
 export default () => (
    <SafeAreaView>
    <View style={styles.container}>
