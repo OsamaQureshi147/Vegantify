@@ -106,6 +106,15 @@ const SignUp = ({navigation}) => {
         >
           <View style={styles.main}>   
               <View style={styles.inputcontainer}>
+
+              <TextInput style={styles.input}
+                  placeholder="Full Name"
+                  placeholderTextColor="#ededed" 
+                  value={fullname} 
+                  onChangeText={(text)=> setFullname(text)} 
+                  >
+                  </TextInput>
+
                   <TextInput style={styles.input} 
                   placeholder="Email"
                   placeholderTextColor="#ededed"
@@ -123,6 +132,26 @@ const SignUp = ({navigation}) => {
                   onChangeText={(text)=> setUsername(text)} 
                   >
                   </TextInput>
+
+
+                  <View
+                  style={styles.radiobutton}
+                  >
+                    <Text style={{paddingTop:20, color: 'white', fontSize: 17}}
+                    >Gender: </Text>
+                      <RadioForm 
+                        buttonSize={12}
+                        radioStyle={{paddingTop:25,
+                        marginLeft:20 }}
+                        selectedButtonColor="black"
+                        formHorizontal={true}
+                        labelHorizontal={true}
+                        radio_props={radioProps} 
+                        onPress={(value) => setGenderRadio(value)}
+                        animation={true} 
+                        buttonWrapStyle={{marginLeft: 300}}
+                      />
+                    </View>
   
                   <TextInput style={styles.input}
                   placeholder="Password"
@@ -145,32 +174,9 @@ const SignUp = ({navigation}) => {
                   </TextInput>
 
   
-                  <TextInput style={styles.input}
-                  placeholder="Full Name"
-                  placeholderTextColor="#ededed" 
-                  value={fullname} 
-                  onChangeText={(text)=> setFullname(text)} 
-                  >
-                  </TextInput>
+                  
 
-                  <View
-                  style={styles.radiobutton}
-                  >
-                    <Text style={{paddingTop:20, color: 'white', fontSize: 17}}
-                    >Gender: </Text>
-                      <RadioForm 
-                        buttonSize={12}
-                        radioStyle={{paddingTop:25,
-                        marginLeft:20 }}
-                        selectedButtonColor="black"
-                        formHorizontal={true}
-                        labelHorizontal={true}
-                        radio_props={radioProps} 
-                        onPress={(value) => setGenderRadio(value)}
-                        animation={true} 
-                        buttonWrapStyle={{marginLeft: 300}}
-                      />
-                    </View>
+                 
   
               </View>
               
