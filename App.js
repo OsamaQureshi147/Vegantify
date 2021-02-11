@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './views/LoginScreen';
 import SignUp from './views/SignUp';
 import dashboard from './views/dashboard'; 
-import findveg from './views/findveg';
 
 const Stack = createStackNavigator();
 

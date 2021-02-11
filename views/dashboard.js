@@ -1,8 +1,9 @@
 import React  from 'react' 
 import AsyncStorage from '@react-native-async-storage/async-storage';  
-import {StyleSheet, View,TouchableOpacity,Text} from 'react-native';
-import { createDrawerNavigator, Header } from '@react-navigation/drawer';
+import {StyleSheet, View} from 'react-native';
+import { createDrawerNavigator} from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import findveg from './findveg';
 import settings from './settings';
 
@@ -52,13 +53,13 @@ const dashboard = ({navigation}) => {
 
 
       <NavigationContainer independent= {true}>
-        <Drawer.Navigator 
+        <Drawer.Navigator  
           drawerPosition="right" 
           initialRouteName="Home"
           drawerContentOptions={{
             activeTintColor: 'red',
             itemStyle: { marginVertical: 10 },
-            backgroundColor: "#a4ede5",
+            backgroundColor: "#a1eeff",
           }}
             overlayColor="transparent"
             drawerStyle={{
@@ -68,7 +69,14 @@ const dashboard = ({navigation}) => {
             }}
           >
           
-          <Drawer.Screen name="Home" component={findveg} />
+          <Drawer.Screen options={{
+            title: 'Explore',
+            headerRight: () => (
+              <Icon.Button name= "ios-menu" size={25} 
+              backgroundColor = "blue" options = {()=>{navigation.openDrawer()}}
+              />
+            )
+          }} name="Explore" component={findveg} />
           <Drawer.Screen name="Settings" component={settings} />
           
         <Drawer.Screen name="Logout" component={logout} />

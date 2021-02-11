@@ -1,11 +1,10 @@
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import React from 'react' ;
-import {StyleSheet, View,TouchableOpacity,Text, SafeAreaView} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 
 export default () => (
-   <SafeAreaView>
-   <View style={styles.container}>
+  //  <SafeAreaView>
      <MapView
        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
        style={styles.map}
@@ -16,9 +15,14 @@ export default () => (
          longitudeDelta: 0.0121,
        }}
      >
+      <Marker
+        coordinate={{
+          latitude: 37.78825,
+         longitude: -122.4324,
+        }}
+      />
+
      </MapView>
-   </View>
-   </SafeAreaView>
 );
 const styles = StyleSheet.create({
     container: {
@@ -29,6 +33,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     map: {
+      height: "100%",
+      width: "98%",
       ...StyleSheet.absoluteFillObject,
     },
    }); 
