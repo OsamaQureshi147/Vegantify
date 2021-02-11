@@ -46,7 +46,21 @@ const dashboard = ({navigation}) => {
 
 
       <NavigationContainer independent= {true}>
-      <Drawer.Navigator drawerPosition="right"  initialRouteName="Home">
+      <Drawer.Navigator 
+        drawerPosition="right" 
+        initialRouteName="Home"
+        drawerContentOptions={{
+          activeTintColor: 'red',
+          itemStyle: { marginVertical: 10 },
+          backgroundColor: "#a4ede5",
+        }}
+          overlayColor="transparent"
+          drawerStyle={{
+            width: '65%',
+            backgroundColor: 'transparent',
+            marginRight: -30,
+          }}
+        >
         <Drawer.Screen name="Map" component={findveg} />
         <Drawer.Screen name="Settings" component={settings} />
       </Drawer.Navigator>
