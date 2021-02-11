@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { ToastAndroid, View, TextInput, Button,Image, ImageBackground,Text, TouchableOpacity, Alert } from 'react-native'
+import { ToastAndroid, View, TextInput, ImageBackground,Text, TouchableOpacity, Alert } from 'react-native'
 import styles from '../styles';
 import RadioForm  from 'react-native-simple-radio-button';
 

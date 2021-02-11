@@ -1,7 +1,8 @@
 import React  from 'react' 
- import AsyncStorage from '@react-native-async-storage/async-storage';  
+import AsyncStorage from '@react-native-async-storage/async-storage';  
 import {StyleSheet, View,TouchableOpacity,Text} from 'react-native';
-
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import findveg from './findveg';
 
 
 clearAll = async () => {
@@ -18,13 +19,14 @@ clearAll = async () => {
 
 const dashboard = ({navigation}) => {  
 
+  const Drawer = createDrawerNavigator();
   const readData = async () => {
     try {
       var m="";
       m = await AsyncStorage.getItem('sp');
       if (m !== null) 
       { 
-        
+        console.log(m);
       }
       else
       {
@@ -39,23 +41,30 @@ const dashboard = ({navigation}) => {
   readData(); 
      
     return( 
-    
+
+
+      // <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Map" component={findveg} />
+        {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
+      </Drawer.Navigator>
+    // </NavigationContainer>
  
     
-      <View style={styles.main}>   
+          // <View style={styles.main}>   
   
 
-          <View style={styles.buttoncontainer}>
-          <TouchableOpacity 
-          style={styles.signinButton}
-          onPress={()=> navigation.navigate("findveg")}
-          >
-              <Text style={styles.opacitytext}>Go to Map</Text>
-          </TouchableOpacity>
-          </View>
+          // <View style={styles.buttoncontainer}>
+          // <TouchableOpacity 
+          // style={styles.signinButton}
+          // onPress={()=> navigation.navigate("findveg")}
+          // >
+          //     <Text style={styles.opacitytext}>Go to Map</Text>
+          // </TouchableOpacity>
+          // </View>
        
       
-      </View>    
+        //  </View>    
       );
 }
 
