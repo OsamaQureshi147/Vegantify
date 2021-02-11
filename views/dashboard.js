@@ -2,7 +2,9 @@ import React  from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';  
 import {StyleSheet, View,TouchableOpacity,Text} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 import findveg from './findveg';
+import settings from './settings';
 
 
 clearAll = async () => {
@@ -43,12 +45,12 @@ const dashboard = ({navigation}) => {
     return( 
 
 
-      // <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
+      <NavigationContainer independent= {true}>
+      <Drawer.Navigator drawerPosition="right"  initialRouteName="Home">
         <Drawer.Screen name="Map" component={findveg} />
-        {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
+        <Drawer.Screen name="Settings" component={settings} />
       </Drawer.Navigator>
-    // </NavigationContainer>
+     </NavigationContainer>
  
     
           // <View style={styles.main}>   

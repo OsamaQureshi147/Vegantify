@@ -1,8 +1,9 @@
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import React from 'react' ;
-import {StyleSheet, View,TouchableOpacity,Text} from 'react-native';
+import {StyleSheet, View,TouchableOpacity,Text, SafeAreaView} from 'react-native';
 
 export default () => (
+   <SafeAreaView>
    <View style={styles.container}>
      <MapView
        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
@@ -16,6 +17,7 @@ export default () => (
      >
      </MapView>
    </View>
+   </SafeAreaView>
 );
 const styles = StyleSheet.create({
     container: {
