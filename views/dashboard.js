@@ -1,136 +1,156 @@
-import React  from 'react' 
-import AsyncStorage from '@react-native-async-storage/async-storage';  
-import {StyleSheet, View} from 'react-native';
-import { createDrawerNavigator} from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import findveg from './findveg';
+import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  Image,
+} from 'react-native';
+import {CommonActions} from '@react-navigation/native';
 import settings from './settings';
-
 
 clearAll = async () => {
   try {
-    await AsyncStorage.clear()
-  } catch(e) {
+    await AsyncStorage.clear();
+  } catch (e) {
     // clear error
   }
- 
-}
-
-
-const logout = () => {
-  return(
-    <View></View>
-    // Handle the logout function here
-  );
-}
-
-
-const dashboard = ({navigation}) => {  
-
-  const Drawer = createDrawerNavigator();
+};
+const dashboard = ({navigation}) => {
   const readData = async () => {
     try {
-      var m="";
+      var m = '';
       m = await AsyncStorage.getItem('sp');
-      if (m !== null) 
-      { 
+      if (m !== null) {
         console.log(m);
+      } else {
+        alert('Not Logged In');
+        navigation.navigate('Login');
       }
-      else
-      {
-        alert("Not Logged In");
-        navigation.navigate("Login");
-      }
-  
-    } catch (e) { 
-       
-    }
-  }
-  readData(); 
-     
-    return( 
+    } catch (e) {}
+  };
+  readData();
 
+  const signout = () => {
+    alert('Logout');
+    clearAll();
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{name: 'Login'}],
+      }),
+    );
+  };
 
-      <NavigationContainer independent= {true}>
-        <Drawer.Navigator  
-          drawerPosition="right" 
-          initialRouteName="Home"
-          drawerContentOptions={{
-            activeTintColor: 'red',
-            itemStyle: { marginVertical: 10 },
-            backgroundColor: "#a1eeff",
-          }}
-            overlayColor="transparent"
-            drawerStyle={{
-              width: '65%',
-              backgroundColor: 'transparent',
-              marginRight: -30,
-            }}
-          >
-          
-          <Drawer.Screen options={{
-            title: 'Explore',
-            headerRight: () => (
-              <Icon.Button name= "ios-menu" size={25} 
-              backgroundColor = "blue" options = {()=>{navigation.openDrawer()}}
-              />
-            )
-          }} name="Explore" component={findveg} />
-          <Drawer.Screen name="Settings" component={settings} />
-          
-        <Drawer.Screen name="Logout" component={logout} />
-      </Drawer.Navigator>
-     </NavigationContainer>
- 
-    
-          // <View style={styles.main}>   
-  
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.main}>
+        <View style={styles.buttoncontainer}>
+          <TouchableOpacity
+            style={styles.signinButton}
+            onPress={() => navigation.navigate('findveg')}>
+            <Text style={styles.opacitytext}>Go to Map</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
 
-          // <View style={styles.buttoncontainer}>
-          // <TouchableOpacity 
-          // style={styles.signinButton}
-          // onPress={()=> navigation.navigate("findveg")}
-          // >
-          //     <Text style={styles.opacitytext}>Go to Map</Text>
-          // </TouchableOpacity>
-          // </View>
-       
-      
-        //  </View>    
-      );
-}
+      <View
+        style={{
+          borderBottomColor: '#c7c8c9',
+          borderBottomWidth: 1.2,
+          marginLeft: 15,
+          marginRight: 15,
+        }}
+      />
 
+      <View style={styles.footer}>
+        <TouchableOpacity>
+          <View style={styles.footerdivision}>
+            <Image
+              style={styles.icons}
+              source={require('../images/profileIcon.jpeg')}></Image>
+            <Text>Profile</Text>
+          </View>
+        </TouchableOpacity>
 
+        <TouchableOpacity>
+          <View
+            style={styles.footerdivision}
+            onPress={() => navigation.navigate('settings')}>
+            <Image
+              style={styles.icons}
+              source={require('../images/settingsIcon.jpeg')}></Image>
+            <Text>Settings</Text>
+          </View>
+        </TouchableOpacity>
 
+        <TouchableOpacity onPress={signout}>
+          <View style={styles.footerdivision}>
+            <Image
+              style={styles.icons}
+              source={require('../images/logoutIcon.jpeg')}></Image>
+            <Text>Logout</Text>
+          </View>
+        </TouchableOpacity>
 
+        <TouchableOpacity>
+          <View style={styles.footerdivision}>
+            <Image
+              style={styles.icons}
+              source={require('../images/aboutusIcon.jpeg')}></Image>
+            <Text>About Us</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
-  main:{  
+  main: {
+    flex: 12,
     justifyContent: 'center',
-    alignItems: 'center'
-  }, 
- 
+    alignItems: 'center',
+  },
 
-  signinButton:
-  {
+  signinButton: {
     backgroundColor: '#80c5d1',
+    borderWidth: 2,
+    borderColor: 'black',
     width: 200,
     padding: 10,
-    marginTop: 120,  
+    marginTop: 120,
     alignItems: 'center',
     borderRadius: 50,
   },
-  opacitytext:
-  { 
-    fontSize:15, 
-    color:'white'
+  opacitytext: {
+    fontSize: 15,
+    color: 'white',
   },
 
- 
+  footer: {
+    width: '100%',
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignContent: 'center',
+  },
+
+  footerdivision: {
+    flexDirection: 'column',
+    // borderWidth: 1,
+    // borderColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  icons: {
+    height: 30,
+    width: 30,
+    marginBottom: 5,
+    justifyContent: 'center',
+  },
 });
-
-
-
-
-export default dashboard
+export default dashboard;

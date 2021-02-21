@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/osamaehsan/Desktop/Vegantify/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sl/values-sl.xml",
+            "outputFile": "/Users/osamaehsan/Downloads/Vegantify/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sl/values-sl.xml",
             "map": [
                 {
                     "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/1cb9b9ea592aa2ea85233be252327dcf/appcompat-1.1.0/res/values-sl/values-sl.xml",

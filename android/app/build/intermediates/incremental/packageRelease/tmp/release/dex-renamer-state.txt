@@ -1,0 +1,4 @@
+#Thu Feb 11 23:47:10 PKT 2021
+base.0=/Users/danish/Dev/Vegantify/android/app/build/intermediates/dex/release/mergeDexRelease/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

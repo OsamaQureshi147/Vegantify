@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/osamaehsan/Desktop/Vegantify/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ru/values-ru.xml",
+            "outputFile": "/Users/osamaehsan/Downloads/Vegantify/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ru/values-ru.xml",
             "map": [
                 {
                     "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/056b9a1220e90bc174f62a185df6eb71/play-services-base-17.2.1/res/values-ru/values.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/osamaehsan/Desktop/Vegantify/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uz/values-uz.xml",
+            "outputFile": "/Users/osamaehsan/Downloads/Vegantify/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uz/values-uz.xml",
             "map": [
                 {
                     "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/68f09ae5e2486b68211dc9a1182b3ec7/jetified-play-services-basement-17.2.1/res/values-uz/values.xml",
