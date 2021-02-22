@@ -9,7 +9,6 @@ import {
   Image,
 } from 'react-native';
 import {CommonActions} from '@react-navigation/native';
-import settings from './settings';
 
 clearAll = async () => {
   try {
@@ -140,8 +139,6 @@ const styles = StyleSheet.create({
 
   footerdivision: {
     flexDirection: 'column',
-    // borderWidth: 1,
-    // borderColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
   },

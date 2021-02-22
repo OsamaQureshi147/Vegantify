@@ -1,197 +1,146 @@
-import React, {useState} from 'react'
-import { View, TextInput,Image, ImageBackground,Text, TouchableOpacity} from 'react-native'
-import styles from '../styles';  
+import React, {useState} from 'react';
+import {
+  View,
+  TextInput,
+  Image,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import styles from '../styles';
 import Toast from 'react-native-simple-toast';
-import AsyncStorage from '@react-native-async-storage/async-storage';  
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SafeAreaView} from 'react-native';
-import { BarIndicator} from 'react-native-indicators';
+import {BarIndicator} from 'react-native-indicators';
 
-
-var coche="";
+var coche = '';
 const storeData = async (value) => {
-    try {
-      await AsyncStorage.setItem('sp', value); 
-    } catch (e) {
-      // saving error
-    }
+  try {
+    await AsyncStorage.setItem('sp', value);
+  } catch (e) {
+    // saving error
   }
+};
 const LoginScreen = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-    const[email, setEmail] = useState("");
-    const[password, setPassword] = useState("");  
-    const [loading, setLoading] = useState(false);
-    
- //    ----------------------------------------------   //
+  //    ----------------------------------------------   //
 
-
- const readData = async () => {
+  const readData = async () => {
     try {
-      var m="";
+      var m = '';
       m = await AsyncStorage.getItem('sp');
-      if (m !== null) 
-      {  
-        navigation.navigate("dashboard");
+      if (m !== null) {
+        navigation.navigate('dashboard');
+      } else {
       }
-      else
-      { 
-      }
-  
-    } catch (e) { 
-       
-    }
-  }
+    } catch (e) {}
+  };
   readData();
 
+  const signIn = () => {
+    var uname = email;
+    var code = password;
 
+    if (uname != '' || code != '') {
+      setLoading(true);
+      fetch('https://zallary.com/vegantify/log_in.php', {
+        method: 'POST',
+        body: JSON.stringify({
+          email: uname,
+          password: code,
+        }),
+      })
+        .then((response) => response.text())
+        .then((text) => {
+          setLoading(false);
 
-
-   
- 
-
-    const signIn = () => {
-   
-        var uname = email;
-        var code = password;
-
-
-        if(uname != "" || code != "")
-        {
-           setLoading(true);
-            fetch('https://zallary.com/vegantify/log_in.php', {
-                method: 'POST',  
-                body: JSON.stringify({
-                    email: uname,
-                    password: code
-                })
-            }) 
-            .then((response) => response.text())
-            .then((text) => { 
-              setLoading(false);
-        
-                if(text.includes('Wrong_Credentials'))
-                    {
-                         Toast.show(text, Toast.SHORT);  
-                    }
-            
-                else
-                      {  
-                            storeData(text);
-                            navigation.navigate("dashboard");
-                         } 
-                 }) ;  
-        }
-        else
-            { 
-                Toast.show("Email/Password Can't be empty" , Toast.SHORT); 
-            }
+          if (text.includes('Wrong_Credentials')) {
+            Toast.show(text, Toast.SHORT);
+          } else {
+            storeData(text);
+            navigation.navigate('dashboard');
+          }
+        });
+    } else {
+      Toast.show("Email/Password Can't be empty", Toast.SHORT);
     }
- //    ----------------------------------------------   //
+  };
+  //    ----------------------------------------------   //
 
-
-
-
-    return(
-
-      <ImageBackground
-      source={require('../images/loginbg.jpg')} 
-          style={{ flex: 1,
-          width: null,
-          height: null,
-          }}
-      
-      >
- 
+  return (
+    <ImageBackground
+      source={require('../images/loginbg.jpg')}
+      style={{flex: 1, width: null, height: null}}>
       <SafeAreaView style={{flex: 1}}>
-         <View style={styles.containers}>
-        {loading ? (
- 
-          <BarIndicator  
-          color='white' 
-          animationDuration={800}
-          count={4}
-          size={30}
-          />
-        ) : (
-          <>
- 
+        <View style={styles.containers}>
+          {loading ? (
+            <BarIndicator
+              color="white"
+              animationDuration={800}
+              count={4}
+              size={30}
+            />
+          ) : (
+            <>
+              <View style={styles.Imagecontainer}>
+                <Image
+                  source={require('../images/appicon180.png')}
+                  style={{
+                    height: 100,
+                    width: 100,
+                  }}></Image>
+              </View>
+              <View style={styles.main}>
+                <View style={styles.inputcontainer}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    placeholderTextColor="white"
+                    autoFocus
+                    type="email"
+                    autoCapitalize="none"
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
+                  />
 
-        <View style={styles.Imagecontainer}>
+                  <TextInput
+                    style={styles.input2}
+                    placeholder="Password"
+                    placeholderTextColor="white"
+                    secureTextEntry
+                    type="password"
+                    autoCapitalize="none"
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                  />
+                </View>
 
-        
+                <View style={styles.buttoncontainer}>
+                  <TouchableOpacity
+                    style={styles.signinButton}
+                    onPress={signIn}>
+                    <Text style={styles.opacitytext}>Sign In</Text>
+                  </TouchableOpacity>
+                </View>
 
-        <Image
-        source={require('../images/appicon180.png')} 
-        style={{
-            height:100,
-            width: 100, 
-        }}
-        ></Image>
-        
+                <View style={{marginTop: 10}}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Register')}>
+                    <Text style={styles.text}>
+                      Don't have an account yet? Sign Up
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </>
+          )}
         </View>
-        <View style={styles.main}>
-       
-        
-            <View style={styles.inputcontainer}>
-                <TextInput style={styles.input} 
-                placeholder="Email" placeholderTextColor="white"
-                autoFocus 
-                type="email"
-                autoCapitalize='none'
-                value={email} 
-                onChangeText={(text)=> setEmail(text)} 
-                />  
-        
-                <TextInput style={styles.input2}
-                placeholder="Password" placeholderTextColor="white"
-                secureTextEntry 
-                type="password" 
-                autoCapitalize='none'
-                value={password} 
-                onChangeText={(text)=>setPassword(text)} 
-                />
-
-            </View> 
-             
-
-            <View style={styles.buttoncontainer}>
-            <TouchableOpacity style={styles.signinButton} onPress= {signIn}>
-                <Text style={styles.opacitytext}>Sign In</Text>
-            </TouchableOpacity>
-            </View>
-            
-            <View
-            style={{marginTop: 10}}> 
-            <TouchableOpacity onPress={()=> navigation.navigate("Register")}> 
-            <Text 
-            style={styles.text} 
-            >Don't have an account yet? Sign Up 
-            
-            </Text>
-            </TouchableOpacity>
-            </View>
-        
-        
-        </View>  
-
-
-
-
-
-
-    </>
-        )}
-      </View>
-
-
-    </SafeAreaView>
-
-    </ImageBackground> 
-
-             
-      );
-}
+      </SafeAreaView>
+    </ImageBackground>
+  );
+};
 
 export default LoginScreen;
-
-
-

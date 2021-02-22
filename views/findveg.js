@@ -5,9 +5,13 @@ import {
   ActivityIndicator,
   StyleSheet,
   Dimensions,
-  Button,
+  Button, 
+  TouchableOpacity,
 } from 'react-native';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+var coche="";
+
+import Toast from 'react-native-simple-toast';
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 
 // Disable yellow box warning messages
@@ -15,7 +19,8 @@ console.disableYellowBox = true;
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
+    this.state = {reports: false};
     this.state = {
       loading: true,
       region: {
@@ -39,13 +44,28 @@ export default class App extends Component {
           longitude: position.coords.longitude,
           latitudeDelta: 0.05,
           longitudeDelta: 0.05,
-        };
+        }; 
+
+        this.setState({
+          reports: [
+            {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            },
+            {
+              latitude: position.coords.latitude + 0.0002,
+              longitude: position.coords.longitude + 0.003,
+            },
+          ],
+        });
+
         this.setState({
           region: region,
           loading: false,
           error: null,
         });
       },
+      
       (error) => {
         alert(error);
         this.setState({
@@ -60,6 +80,19 @@ export default class App extends Component {
   onMapReady = () => {
     this.setState({isMapReady: true, marginTop: 0});
   };
+
+  mapMarkers = () => {
+    return this.state.reports.map((report) => (
+      <Marker
+        // key={report.id}
+        coordinate={{latitude: report.latitude, longitude: report.longitude}}
+        title="ji"
+        // description={report.comments}
+      ></Marker>
+    ));
+  };
+
+ 
 
   // Fetch location details as a JOSN from google map API
   fetchAddress = () => {
@@ -80,6 +113,20 @@ export default class App extends Component {
         });
       });
   };
+
+  fetch_vegetrains =()=>{   
+    Toast.show("pressed", Toast.SHORT);
+  //   fetch('https://zallary.com/vegantify/fetch_location.php', {
+  //     method: 'POST',   
+  // }).then((response) => response.text())
+  //   .then((text) => { 
+  //     console.log(text);  
+  //      })
+  //      .catch((error) => {
+  //       console.error(error);
+  //    }); 
+  }
+ 
 
   // Update state on region change
   onRegionChange = (region) => {
@@ -114,17 +161,59 @@ export default class App extends Component {
                 showsUserLocation={true}
                 onMapReady={this.onMapReady}
                 onRegionChangeComplete={this.onRegionChange}>
+                {this.mapMarkers()}
+               
+                
                 {/* <MapView.Marker
                   coordinate={{ "latitude": this.state.region.latitude, "longitude": this.state.region.longitude }}
                   title={"Your Location"}
                   draggable
                 /> */}
+                {/* <View   style={styles.search} >
+                </View> */}
+              
               </MapView>
+              
             )}
+            <View style={{ 
+              width: '100%',  
+              marginBottom:100,
+              position: 'absolute', //Here is the trick
+              bottom: 0, //Here is the trick 
+              }}>
+
+            <TouchableOpacity 
+
+            style={{ 
+              width: '40%', 
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginLeft:'30%',
+              marginRight:'30%',
+              position: 'absolute', //Here is the trick
+              bottom: 0, //Here is the trick
+              backgroundColor: '#cfcfcf',
+              opacity: 0.7,
+              padding: 10, 
+              alignItems: 'center',
+              borderRadius: 50,
+              }}
+
+            
+             onPress={this.fetch_vegetrains} > 
+            <Text  
+            >Search Vegetrains
+            </Text>
+            </TouchableOpacity>
+ 
+
+            </View>
 
             {/* <View style={styles.mapMarkerContainer}>
               <Text style={{  fontSize: 42, color: "#ad1f1f" }}>&#xf041;</Text>
             </View> */}
+
+                
           </View>
           {/* <View style={styles.deatilSection}>
             <Text style={{ fontSize: 16, fontWeight: "bold",  marginBottom: 20 }}>Move map for location</Text>
@@ -152,6 +241,12 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height,
     width: Dimensions.get('screen').width,
   },
+  search: {
+    width: '100%',
+    height: 50,  
+    position: 'absolute', //Here is the trick
+    bottom: 0, //Here is the trick
+  },
   map: {
     flex: 1,
   },
@@ -176,6 +271,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  text:
+    { 
+      fontSize:14,
+      marginBottom:30,
+      marginStart:10,
+      marginTop:18, 
+      color:'white'
+    },
   btnContainer: {
     width: Dimensions.get('window').width - 20,
     position: 'absolute',

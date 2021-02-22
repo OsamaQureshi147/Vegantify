@@ -24,6 +24,8 @@
     "react-native-indicators": "^0.17.0",
     "react-native-maps": "0.27.1",
     "react-native-paper": "^4.7.1",
+    "react-native-progress": "^4.1.2",
+    "react-native-progress-bar-animated": "^1.0.6",
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.17.1",
