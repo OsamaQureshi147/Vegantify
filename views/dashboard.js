@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native';
 import {CommonActions} from '@react-navigation/native';
+import settings from './settings.js';
 
 clearAll = async () => {
   try {
@@ -74,10 +75,8 @@ const dashboard = ({navigation}) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <View
-            style={styles.footerdivision}
-            onPress={() => navigation.navigate('settings')}>
+        <TouchableOpacity onPress={() => navigation.navigate('settings')}>
+          <View style={styles.footerdivision}>
             <Image
               style={styles.icons}
               source={require('../images/settingsIcon.jpeg')}></Image>

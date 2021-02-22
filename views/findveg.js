@@ -5,16 +5,15 @@ import {
   ActivityIndicator,
   StyleSheet,
   Dimensions,
+  SafeAreaView,
   Button,
   TouchableOpacity,
-  SafeAreaView,
 } from 'react-native';
+import {ProgressBar, Colors} from 'react-native-paper';
 var coche = '';
-
 import Toast from 'react-native-simple-toast';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-import {ProgressBar, Colors} from 'react-native-paper';
 
 // Disable yellow box warning messages
 console.disableYellowBox = true;
@@ -22,7 +21,10 @@ console.disableYellowBox = true;
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {reports: false};
+    this.state = {
+      showTheThing: false,
+      reports: false,
+    };
     this.state = {
       loading: true,
       region: {
@@ -48,15 +50,14 @@ export default class App extends Component {
           longitudeDelta: 0.05,
         };
 
+        Toast.show(position.coords.latitude + '', Toast.SHORT);
+
         this.setState({
+          showTheThing: false,
           reports: [
             {
               latitude: position.coords.latitude,
               longitude: position.coords.longitude,
-            },
-            {
-              latitude: position.coords.latitude + 0.0002,
-              longitude: position.coords.longitude + 0.003,
             },
           ],
         });
@@ -84,14 +85,19 @@ export default class App extends Component {
   };
 
   mapMarkers = () => {
-    return this.state.reports.map((report) => (
-      <Marker
-        // key={report.id}
-        coordinate={{latitude: report.latitude, longitude: report.longitude}}
-        title="ji"
-        // description={report.comments}
-      ></Marker>
-    ));
+    return (
+      this.state.showTheThing &&
+      this.state.reports.map((report) => (
+        <Marker
+          // key={report.name}
+          coordinate={{
+            latitude: parseFloat(report.latitude),
+            longitude: parseFloat(report.longitude),
+          }}
+          title={report.name}
+          description={'Email: ' + report.email}></Marker>
+      ))
+    );
   };
 
   // Fetch location details as a JOSN from google map API
@@ -116,22 +122,28 @@ export default class App extends Component {
 
   renderProgressBar() {
     if (this.state.viewProgress) {
-      return <ProgressBar color={'blue'} indeterminate={true} />;
+      return <ProgressBar color="#1b95e0" indeterminate={true} />;
     }
   }
 
   fetch_vegetrains = () => {
-    Toast.show('pressed', Toast.SHORT);
     this.setState({viewProgress: true});
-    //   fetch('https://zallary.com/vegantify/fetch_location.php', {
-    //     method: 'POST',
-    // }).then((response) => response.text())
-    //   .then((text) => {
-    //     console.log(text);
-    //      })
-    //      .catch((error) => {
-    //       console.error(error);
-    //    });
+    fetch('https://zallary.com/vegantify/fetch_location.php', {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((jsonresponse) => {
+        this.setState({viewProgress: false});
+        this.setState({
+          showTheThing: true,
+          reports: jsonresponse,
+        });
+
+        console.log(jsonresponse);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   // Update state on region change
@@ -157,7 +169,7 @@ export default class App extends Component {
       );
     } else {
       return (
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1}}>
           <View style={styles.container}>
             {this.renderProgressBar()}
             <View style={{flex: 2}}>
@@ -196,7 +208,7 @@ export default class App extends Component {
                     marginRight: '30%',
                     position: 'absolute', //Here is the trick
                     bottom: 0, //Here is the trick
-                    backgroundColor: '#cfcfcf',
+                    backgroundColor: '#bababa',
                     opacity: 0.7,
                     padding: 10,
                     alignItems: 'center',

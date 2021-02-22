@@ -33,7 +33,7 @@ const LoginScreen = ({navigation}) => {
       var m = '';
       m = await AsyncStorage.getItem('sp');
       if (m !== null) {
-        navigation.navigate('dashboard');
+        navigation.replace('dashboard');
       } else {
       }
     } catch (e) {}
@@ -61,7 +61,7 @@ const LoginScreen = ({navigation}) => {
             Toast.show(text, Toast.SHORT);
           } else {
             storeData(text);
-            navigation.navigate('dashboard');
+            navigation.replace('dashboard');
           }
         });
     } else {
