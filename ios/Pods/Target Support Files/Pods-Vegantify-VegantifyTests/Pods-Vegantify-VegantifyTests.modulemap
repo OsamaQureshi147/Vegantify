@@ -1,0 +1,6 @@
+module Pods_Vegantify_VegantifyTests {
+  umbrella header "Pods-Vegantify-VegantifyTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
