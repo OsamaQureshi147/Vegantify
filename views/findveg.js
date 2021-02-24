@@ -7,6 +7,7 @@ import {
   Dimensions,
   SafeAreaView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {ProgressBar} from 'react-native-paper';
 import Toast from 'react-native-simple-toast';
@@ -162,6 +163,17 @@ export default class App extends Component {
   //     });
   // };
 
+  // this funtion shows the popup of nearby people
+  show_nearby = (obj) => {
+    let name_arr = [];
+    let distance_arr = [];
+    for (let i = 0; i < obj.length; i++) {
+      name_arr.push(obj[i].name);
+      distance_arr.push(obj[i].distance);
+    }
+    Alert.alert(name_arr);
+  };
+
   fetch_vegetrains = () => {
     this.setState({viewProgress: true});
     fetch('https://zallary.com/vegantify/fetch_location.php', {
@@ -183,7 +195,7 @@ export default class App extends Component {
             reports: jsonresponse,
           });
         }
-
+        show_nearby(jsonresponse);
         console.log(jsonresponse);
       })
       .catch((error) => {
