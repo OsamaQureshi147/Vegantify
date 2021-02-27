@@ -5890,6 +5890,11 @@
   "resolved" "https://registry.npmjs.org/react-native-simple-toast/-/react-native-simple-toast-1.1.3.tgz"
   "version" "1.1.3"
 
+"react-native-sound-player@^0.10.6":
+  "integrity" "sha512-gK3a5d5iLBLqOQREVlGuTvHk8Qorx/HySPH1ZFpKhHExhXN6r/P036pYAGeUTSmhxwdJ5vnjsFE6Qq1BM9TRSA=="
+  "resolved" "https://registry.npmjs.org/react-native-sound-player/-/react-native-sound-player-0.10.6.tgz"
+  "version" "0.10.6"
+
 "react-native-vector-icons@*", "react-native-vector-icons@^8.0.0":
   "integrity" "sha512-u3NWvO+b7nTCxx7IU4EzukFyiApHdpjbsjKgMFEI2Ma+r1Mq48s0ajvBCIPI7LCgKBGYclOxWmMV9DHV2cJFlw=="
   "resolved" "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-8.0.0.tgz"

@@ -12,7 +12,7 @@ import Toast from 'react-native-simple-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SafeAreaView} from 'react-native';
 import {BarIndicator} from 'react-native-indicators';
- 
+
 const storeData = async (value) => {
   try {
     await AsyncStorage.setItem('sp', value);
@@ -60,7 +60,7 @@ const LoginScreen = ({navigation}) => {
             Toast.show(text, Toast.SHORT);
           } else {
             storeData(text);
-            navigation.navigate('dashboard');
+            navigation.replace('dashboard');
           }
         });
     } else {
@@ -97,7 +97,7 @@ const LoginScreen = ({navigation}) => {
                   <TextInput
                     style={styles.input}
                     placeholder="Email"
-                    placeholderTextColor="white" 
+                    placeholderTextColor="white"
                     type="email"
                     autoCapitalize="none"
                     value={email}
@@ -126,7 +126,7 @@ const LoginScreen = ({navigation}) => {
 
                 <View style={{marginTop: 10}}>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Register')}>
+                    onPress={() => navigation.navigate('SignUp')}>
                     <Text style={styles.text}>
                       Don't have an account yet? Sign Up
                     </Text>

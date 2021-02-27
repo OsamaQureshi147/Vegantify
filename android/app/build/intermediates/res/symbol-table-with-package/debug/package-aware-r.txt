@@ -1900,6 +1900,7 @@ layout text_view_without_line_height
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
+raw alert_sound
 raw amu_ballon_gx_prefix
 raw amu_basic_folder
 raw amu_basic_placemark

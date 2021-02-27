@@ -7,14 +7,11 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Image,
-  ToastAndroid,
 } from 'react-native';
 import {CommonActions} from '@react-navigation/native';
-import Geolocation from '@react-native-community/geolocation'; 
-import { PermissionsAndroid } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
+import {PermissionsAndroid} from 'react-native';
 import Toast from 'react-native-simple-toast';
-
-import settings from './settings.js';
 
 clearAll = async () => {
   try {
@@ -24,30 +21,28 @@ clearAll = async () => {
   }
 };
 const dashboard = ({navigation}) => {
-  const readData = async () => {
-    try {
-      var m = '';
-      m = await AsyncStorage.getItem('sp');
-      if (m !== null) {
-        console.log(m);
-      } else {
-        alert('Not Logged In');
-        navigation.navigate('Login');
-      }
-    } catch (e) {}
-  };
-  readData();
+  // const readData = async () => {
+  //   try {
+  //     var m = '';
+  //     m = await AsyncStorage.getItem('sp');
+  //     if (m !== null) {
+  //       console.log(m);
+  //     } else {
+  //       alert('Not Logged In');
+  //       navigation.navigate('Login');
+  //     }
+  //   } catch (e) {}
+  // };
+  // readData();
 
   //...............................
 
   const getLocation = async () => {
-    
-    if (Platform.OS === 'ios') { 
+    if (Platform.OS === 'ios') {
       // your code using Geolocation and asking for authorisation with
       Geolocation.requestAuthorization();
-      navigation.navigate('findveg'); 
-    } 
-    else {
+      navigation.navigate('findveg');
+    } else {
       try {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -59,12 +54,9 @@ const dashboard = ({navigation}) => {
             buttonPositive: 'OK',
           },
         );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) 
-        { 
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           navigation.navigate('findveg');
-        } 
-        else 
-        {
+        } else {
           Toast.show('Location permission denied', Toast.show);
           navigation.navigate('findveg');
         }
@@ -72,7 +64,6 @@ const dashboard = ({navigation}) => {
         console.warn(err);
       }
     }
- 
   };
 
   //...................................
@@ -135,7 +126,7 @@ const dashboard = ({navigation}) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('aboutus')}>
           <View style={styles.footerdivision}>
             <Image
               style={styles.icons}

@@ -14,6 +14,7 @@ import Toast from 'react-native-simple-toast';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SoundPlayer from 'react-native-sound-player';
 console.disableYellowBox = true;
 var lat_ = '',
   long_ = '';
@@ -167,11 +168,30 @@ export default class App extends Component {
   show_nearby = (obj) => {
     let name_arr = [];
     let distance_arr = [];
+    let no_of_users = 0; //counter for users within 1km
     for (let i = 0; i < obj.length; i++) {
       name_arr.push(obj[i].name);
       distance_arr.push(obj[i].distance);
+      if (obj[i].distance < 0.6) {
+        no_of_users++;
+      }
     }
-    Alert.alert(name_arr);
+    if (no_of_users == 0) {
+      Alert.alert('No users found in 1Km radius');
+    } else {
+      let nearby_frndz = 'No. of users nearby = '.concat(no_of_users);
+      console.log('There are ', no_of_users, ' nearby');
+      Alert.alert(
+        (title = 'Users inside 1Km radius'),
+        (message = nearby_frndz),
+        //adding sound after this
+      );
+      try {
+        SoundPlayer.playSoundFile('alert_sound', 'mp3');
+      } catch (error) {
+        console.log('cannot play sound file: ', error);
+      }
+    }
   };
 
   fetch_vegetrains = () => {
@@ -195,7 +215,7 @@ export default class App extends Component {
             reports: jsonresponse,
           });
         }
-        show_nearby(jsonresponse);
+        this.show_nearby(jsonresponse);
         console.log(jsonresponse);
       })
       .catch((error) => {
