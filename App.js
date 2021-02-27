@@ -114,14 +114,13 @@ const App = () => {
 function routing({navigation}) {
   return (
     <Stack.Navigator
-      initialRouteName="Login"
       screenOptions={{
         headerShown: false,
       }}>
       <Stack.Screen name="dashboard" component={dashboard} />
+      <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="findveg" component={findveg} />
-      <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="settings" component={settings} />
       <Stack.Screen name="aboutus" component={aboutus} />
     </Stack.Navigator>
