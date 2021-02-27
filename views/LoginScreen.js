@@ -27,17 +27,17 @@ const LoginScreen = ({navigation}) => {
 
   //    ----------------------------------------------   //
 
-  const readData = async () => {
-    try {
-      var m = '';
-      m = await AsyncStorage.getItem('sp');
-      if (m !== null) {
-        navigation.replace('dashboard');
-      } else {
-      }
-    } catch (e) {}
-  };
-  readData();
+  // const readData = async () => {
+  //   try {
+  //     var m = '';
+  //     m = await AsyncStorage.getItem('sp');
+  //     if (m !== null) {
+  //       navigation.replace('dashboard');
+  //     } else {
+  //     }
+  //   } catch (e) {}
+  // };
+  // readData();
 
   const signIn = () => {
     var uname = email;
@@ -88,8 +88,8 @@ const LoginScreen = ({navigation}) => {
                 <Image
                   source={require('../images/appicon180.png')}
                   style={{
-                    height: 100,
-                    width: 100,
+                    height: 160,
+                    width: 160,
                   }}></Image>
               </View>
               <View style={styles.main}>
