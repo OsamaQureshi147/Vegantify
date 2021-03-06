@@ -7,6 +7,7 @@ import {
   Platform,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Alert,
 } from 'react-native';
 import Toast from 'react-native-simple-toast';
 
@@ -14,9 +15,58 @@ const settings = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [new_password, setNewPassword] = useState('');
   const [confirm_password, setConfirmPassword] = useState('');
+  const [e_mail, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const signout = () => {
+    alert('Password changed successfully!');
+    clearAll();
+    navigation.replace('Login');
+  };
+  const readData = async () => {
+    try {
+      var m = '';
+      m = await AsyncStorage.getItem('sp');
+      if (m !== null) {
+        let obj = JSON.parse(m);
+        Toast.show('hi', Toast.SHORT);
+
+        // setEmail(obj[0].email + '');
+        // fname = obj[0].fullname;
+        // username = obj[0].username;
+        // console.log(fullname);
+      } else {
+        alert('Unable to find email');
+        // navigation.navigate('Login');
+      }
+    } catch (e) {}
+  };
+
+  readData();
   const changepwd = () => {
     if (new_password != confirm_password) {
       Toast.show("Passwords didn't match", Toast.SHORT);
+    } else {
+      Alert.alert(e_mail);
+      // setLoading(true);
+      // fetch('https://zallary.com/vegantify/change_password.php', {
+      //   method: 'POST',
+      //   body: JSON.stringify({
+      //     email: e_mail,
+      //     old_password: password,
+      //     new_password: new_password,
+      //   }),
+      // })
+      //   .then((response) => response.text())
+      //   .then((text) => {
+      //     setLoading(false);
+      //     if (text.includes('Password changed successfully')) {
+      //       signout();
+      //       storeData(text);
+      //     } else {
+      //       Toast.show(text, Toast.SHORT);
+      //     }
+      //   });
     }
   };
 
@@ -27,6 +77,7 @@ const settings = ({navigation}) => {
           style={styles.input}
           placeholder="Password"
           placeholderTextColor="black"
+          secureTextEntry
           value={password}
           onChangeText={(text) => setPassword(text)}></TextInput>
 
@@ -34,6 +85,7 @@ const settings = ({navigation}) => {
           style={styles.input}
           placeholder="New Password"
           placeholderTextColor="black"
+          secureTextEntry
           value={new_password}
           autoCapitalize="none"
           onChangeText={(text) => setNewPassword(text)}></TextInput>
@@ -41,6 +93,7 @@ const settings = ({navigation}) => {
         <TextInput
           style={styles.input}
           placeholder="Confirm Password"
+          secureTextEntry
           placeholderTextColor="black"
           value={confirm_password}
           autoCapitalize="none"
