@@ -9,6 +9,8 @@ import {
   KeyboardAvoidingView,
   Alert,
 } from 'react-native';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-simple-toast';
 
 const settings = ({navigation}) => {
@@ -29,12 +31,10 @@ const settings = ({navigation}) => {
       m = await AsyncStorage.getItem('sp');
       if (m !== null) {
         let obj = JSON.parse(m);
-        Toast.show('hi', Toast.SHORT);
-
-        // setEmail(obj[0].email + '');
-        // fname = obj[0].fullname;
-        // username = obj[0].username;
-        // console.log(fullname);
+        setEmail(obj[0].email);
+        fname = obj[0].fullname;
+        username = obj[0].username;
+        console.log(fullname);
       } else {
         alert('Unable to find email');
         // navigation.navigate('Login');
@@ -44,30 +44,30 @@ const settings = ({navigation}) => {
 
   readData();
   const changepwd = () => {
-    if (new_password != confirm_password) {
-      Toast.show("Passwords didn't match", Toast.SHORT);
-    } else {
-      Alert.alert(e_mail);
-      // setLoading(true);
-      // fetch('https://zallary.com/vegantify/change_password.php', {
-      //   method: 'POST',
-      //   body: JSON.stringify({
-      //     email: e_mail,
-      //     old_password: password,
-      //     new_password: new_password,
-      //   }),
-      // })
-      //   .then((response) => response.text())
-      //   .then((text) => {
-      //     setLoading(false);
-      //     if (text.includes('Password changed successfully')) {
-      //       signout();
-      //       storeData(text);
-      //     } else {
-      //       Toast.show(text, Toast.SHORT);
-      //     }
-      //   });
-    }
+    if (new_password)
+      if (new_password != confirm_password) {
+        Toast.show("Passwords didn't match", Toast.SHORT);
+      } else {
+        setLoading(true);
+        fetch('https://zallary.com/vegantify/change_password.php', {
+          method: 'POST',
+          body: JSON.stringify({
+            email: e_mail,
+            old_password: password,
+            new_password: new_password,
+          }),
+        })
+          .then((response) => response.text())
+          .then((text) => {
+            setLoading(false);
+            if (text.includes('Password changed successfully')) {
+              signout();
+              storeData(text);
+            } else {
+              Toast.show(text, Toast.SHORT);
+            }
+          });
+      }
   };
 
   return (
