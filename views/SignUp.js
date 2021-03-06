@@ -37,14 +37,27 @@ const SignUp = ({navigation}) => {
   const register = () => {
     var e_mail = email;
     var code = password;
+    var confirm_code = confirm_password;
     var uname = username;
     var full_name = fullname;
     var sex = gender;
+    // if(code =="")
+    // {
+    //   Alert.alert("empty");
+    // }
 
-    if (password != confirm_password) {
-      Toast.show("Passwords didn't match", Toast.SHORT);
+    if (
+      uname == '' ||
+      code == '' ||
+      (confirm_code == '') | (full_name == '') ||
+      e_mail == ''
+    ) {
+      Toast.show('All Fields are required', Toast.show);
     } else {
-      if (uname != '' || code != '' || username != '' || fullname != '') {
+      if (code != confirm_code) {
+        Toast.show("Passwords didn't match", Toast.SHORT);
+        // Alert.alert(code);
+      } else {
         setLoading(true);
         fetch('https://zallary.com/vegantify/signup.php', {
           method: 'POST',
@@ -67,8 +80,6 @@ const SignUp = ({navigation}) => {
               Toast.show(text, Toast.SHORT);
             }
           });
-      } else {
-        Toast.show('All fields are required', Toast.SHORT);
       }
     }
   };
