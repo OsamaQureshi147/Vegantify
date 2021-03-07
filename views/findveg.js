@@ -16,8 +16,7 @@ import Geolocation from '@react-native-community/geolocation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SoundPlayer from 'react-native-sound-player';
 console.disableYellowBox = true;
-var lat_ = '',
-  long_ = '';
+var lat_ = "",long_ ="";
 
 export default class App extends Component {
   constructor(props) {
@@ -194,9 +193,11 @@ export default class App extends Component {
     }
   };
 
-  fetch_vegetrains = () => {
+  fetch_vegetrains = () => 
+  { 
+
     this.setState({viewProgress: true});
-    fetch('https://zallary.com/vegantify/fetch_location.php', {
+    fetch('https://zallary.com/vegantify/fetch_location.php',{
       method: 'POST',
       body: JSON.stringify({
         latitude: lat_,
