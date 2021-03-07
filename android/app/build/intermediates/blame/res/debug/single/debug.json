@@ -148,6 +148,10 @@
         "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/863e0c3c6716935cd3657ad638fd992d/material-1.1.0/res/drawable/mtrl_dialog_background.xml"
     },
     {
+        "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_profileicon.jpeg.flat",
+        "source": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/src/main/res/drawable-mdpi/images_profileicon.jpeg"
+    },
+    {
         "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_ic_star_half_black_36dp.png.flat",
         "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/1cb9b9ea592aa2ea85233be252327dcf/appcompat-1.1.0/res/drawable-hdpi-v4/abc_ic_star_half_black_36dp.png"
     },
@@ -158,6 +162,10 @@
     {
         "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable_abc_textfield_search_material.xml.flat",
         "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/1cb9b9ea592aa2ea85233be252327dcf/appcompat-1.1.0/res/drawable/abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/raw_node_modules_reactnativevectoricons_glyphmaps_materialcommunityicons.json.flat",
+        "source": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/src/main/res/raw/node_modules_reactnativevectoricons_glyphmaps_materialcommunityicons.json"
     },
     {
         "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/layout_mtrl_calendar_months.xml.flat",
@@ -784,6 +792,10 @@
         "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/ea3def83da33b31e3e0b413eb1002fb3/jetified-android-maps-utils-0.5/res/layout/amu_webview.xml"
     },
     {
+        "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_logouticon.jpeg.flat",
+        "source": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/src/main/res/drawable-mdpi/images_logouticon.jpeg"
+    },
+    {
         "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/1cb9b9ea592aa2ea85233be252327dcf/appcompat-1.1.0/res/drawable-xxxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
     },
@@ -1266,6 +1278,10 @@
     {
         "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
         "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/1cb9b9ea592aa2ea85233be252327dcf/appcompat-1.1.0/res/drawable-xxhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_aboutusicon.jpeg.flat",
+        "source": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/src/main/res/drawable-mdpi/images_aboutusicon.jpeg"
     },
     {
         "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/anim_abc_fade_out.xml.flat",
@@ -1872,6 +1888,10 @@
         "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/1cb9b9ea592aa2ea85233be252327dcf/appcompat-1.1.0/res/anim/btn_radio_to_off_mtrl_dot_group_animation.xml"
     },
     {
+        "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_settingsicon.jpeg.flat",
+        "source": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/src/main/res/drawable-mdpi/images_settingsicon.jpeg"
+    },
+    {
         "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
         "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/056b9a1220e90bc174f62a185df6eb71/play-services-base-17.2.1/res/drawable/common_google_signin_btn_icon_dark_normal.xml"
     },
@@ -2366,6 +2386,10 @@
     {
         "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_amu_bubble_mask.9.png.flat",
         "source": "/Users/osamaehsan/.gradle/caches/transforms-2/files-2.1/ea3def83da33b31e3e0b413eb1002fb3/jetified-android-maps-utils-0.5/res/drawable-xhdpi-v4/amu_bubble_mask.9.png"
+    },
+    {
+        "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/drawable-mdpi_node_modules_reactnativepaper_src_assets_backchevron.png.flat",
+        "source": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/src/main/res/drawable-mdpi/node_modules_reactnativepaper_src_assets_backchevron.png"
     },
     {
         "merged": "/Users/osamaehsan/Desktop/Dev/Project Vegantify/Vegantify/android/app/build/intermediates/res/merged/debug/color_mtrl_bottom_nav_item_tint.xml.flat",

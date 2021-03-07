@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import {
-  ToastAndroid,
   View,
   TextInput,
   ImageBackground,
   Text,
   TouchableOpacity,
   SafeAreaView,
-  Alert,
 } from 'react-native';
 import styles from '../styles';
 import RadioForm from 'react-native-simple-radio-button';
@@ -36,7 +34,7 @@ const SignUp = ({navigation}) => {
 
   const register = () => {
     var e_mail = email;
-    var code = password;
+    var code = password; 
     var confirm_code = confirm_password;
     var uname = username;
     var full_name = fullname;
@@ -46,18 +44,20 @@ const SignUp = ({navigation}) => {
     //   Alert.alert("empty");
     // }
 
-    if (
-      uname == '' ||
-      code == '' ||
-      (confirm_code == '') | (full_name == '') ||
-      e_mail == ''
-    ) {
-      Toast.show('All Fields are required', Toast.show);
-    } else {
-      if (code != confirm_code) {
+
+    if(uname == "" || code=="" ||  confirm_code =="" ||  full_name =="" || e_mail =="")
+    { 
+      Toast.show("All Fields are required",Toast.show); 
+    }
+    else
+    {
+      if (code != confirm_code) 
+      {
         Toast.show("Passwords didn't match", Toast.SHORT);
         // Alert.alert(code);
-      } else {
+      }
+      else
+      { 
         setLoading(true);
         fetch('https://zallary.com/vegantify/signup.php', {
           method: 'POST',
@@ -79,9 +79,10 @@ const SignUp = ({navigation}) => {
             } else {
               Toast.show(text, Toast.SHORT);
             }
-          });
-      }
-    }
+          }); 
+
+      }  
+    } 
   };
 
   const setGenderRadio = (label) => {

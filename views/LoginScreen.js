@@ -40,10 +40,16 @@ const LoginScreen = ({navigation}) => {
   // readData();
 
   const signIn = () => {
+    Toast
     var uname = email;
     var code = password;
 
-    if (uname != '' || code != '') {
+    if (uname =="" || code == "")
+    {
+      Toast.show("Email/Password Can't be empty", Toast.SHORT);
+    }
+    else
+    {
       setLoading(true);
       fetch('https://zallary.com/vegantify/log_in.php', {
         method: 'POST',
@@ -63,9 +69,7 @@ const LoginScreen = ({navigation}) => {
             navigation.replace('dashboard');
           }
         });
-    } else {
-      Toast.show("Email/Password Can't be empty", Toast.SHORT);
-    }
+    }  
   };
   //    ----------------------------------------------   //
 

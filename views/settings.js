@@ -44,10 +44,19 @@ const settings = ({navigation}) => {
 
   readData();
   const changepwd = () => {
-    if (new_password)
-      if (new_password != confirm_password) {
-        Toast.show("Passwords didn't match", Toast.SHORT);
-      } else {
+    if(new_password == "" || confirm_password == "" || password == "")
+    {
+
+      Toast.show("All Fields are required", Toast.SHORT); 
+    }
+    else
+    { 
+      if (new_password != confirm_password) 
+      {
+        Toast.show("Passwords didn't match", Toast.SHORT); 
+      } 
+      else 
+      {
         setLoading(true);
         fetch('https://zallary.com/vegantify/change_password.php', {
           method: 'POST',
@@ -60,14 +69,18 @@ const settings = ({navigation}) => {
           .then((response) => response.text())
           .then((text) => {
             setLoading(false);
-            if (text.includes('Password changed successfully')) {
-              signout();
-              storeData(text);
+            if (text.includes('Password changed successfully')) 
+            { 
+              Toast.show(text, Toast.SHORT); 
             } else {
               Toast.show(text, Toast.SHORT);
             }
           });
       }
+
+
+    }
+  
   };
 
   return (
